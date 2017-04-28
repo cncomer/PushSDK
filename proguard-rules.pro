@@ -16,39 +16,24 @@
 #   public *;
 #}
 
--dontwarn com.ut.mini.**
--dontwarn okio.**
+-dontwarn com.taobao.**
+-dontwarn anet.channel.**
+-dontwarn anetwork.channel.**
+-dontwarn org.android.**
+-dontwarn org.apache.thrift.**
 -dontwarn com.xiaomi.**
--dontwarn com.squareup.wire.**
--dontwarn android.support.v4.**
+-dontwarn com.huawei.**
 
 -keepattributes *Annotation*
 
--keep class android.support.v4.** { *; }
--keep interface android.support.v4.app.** { *; }
+-keep class com.taobao.** {*;}
+-keep class org.android.** {*;}
+-keep class anet.channel.** {*;}
+-keep class com.umeng.** {*;}
+-keep class com.xiaomi.** {*;}
+-keep class com.huawei.** {*;}
+-keep class org.apache.thrift.** {*;}
 
--keep class okio.** {*;}
--keep class com.squareup.wire.** {*;}
-
--keep class com.umeng.message.protobuffer.* {
-        public <fields>;
-        public <methods>;
-}
-
--keep class com.umeng.message.* {
-    public <fields>;
-    public <methods>;
-}
-
--keep class org.android.agoo.impl.*{
-	public <fields>;
-    public <methods>;
-}
-
--keep class org.android.agoo.service.* {*;}
-
--keep class org.android.spdy.**{*;}
-
--keep public class com.umeng.message.lib.R$*{
-    public static final int *;
+-keep public class **.R$*{
+   public static final int *;
 }
