@@ -172,6 +172,9 @@ public class YouMengMessageHelper {
 	 public synchronized String getDeviceTotke() {
 		 return mPushAgent.getRegistrationId();
 	    }
+	public synchronized String getDeviceToken() {
+		return mPushAgent.getRegistrationId();
+	}
 
 	    public synchronized boolean getDeviceTotkeStatus() {
 	    	return mPreferManager.getBoolean("device_token_status", false);
