@@ -33,4 +33,9 @@ android {
 dependencies {
     provided files('libs/utdid4all-1.1.5_proguard.jar')
     compile files('libs/com.umeng.message_v3.0.0.jar')
+<<<<<<< HEAD
+=======
+    compile 'com.umeng.analytics:analytics:6.0.1'
+    compile files('libs/umeng-onlineconfig_v1.0.0.jar')
+>>>>>>> e5e4f7e493e1f70eff8895df89798eed30bced46
 }
