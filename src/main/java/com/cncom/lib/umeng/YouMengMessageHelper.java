@@ -8,12 +8,10 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.message.IUmengCallback;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.UmengNotificationClickHandler;
-import com.umeng.message.lib.BuildConfig;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 import com.umeng.onlineconfig.OnlineConfigLog;
 import com.umeng.onlineconfig.UmengOnlineConfigureListener;
@@ -36,7 +34,11 @@ public class YouMengMessageHelper {
 		mContext = context;
 		mPreferManager = PreferenceManager.getDefaultSharedPreferences(mContext);
 		mPushAgent = PushAgent.getInstance(mContext);
+
 		setDebug((mContext.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+		mPushAgent.setDebugMode(isInDebug());
+		mPushAgent.setPushCheck(isInDebug());
+
 		registerYmengMessageHandler();
 	}
 
@@ -81,9 +83,6 @@ public class YouMengMessageHelper {
 	 * 启动推送功能,一旦设备token注册成功，会回调mRegisterCallback
 	 */
 	public synchronized void startPushAgent() {
-		mPushAgent.setDebugMode(isInDebug());
-		mPushAgent.setPushCheck(false/*MyApplication.getInstance().isInDebug()*/);
-
 		//注册推送服务，每次调用register方法都会回调该接口
 		mPushAgent.register(new IUmengRegisterCallback() {
 
@@ -91,12 +90,12 @@ public class YouMengMessageHelper {
 			public void onSuccess(String deviceToken) {
 				//注册成功会返回device token
 				logD("IUmengRegisterCallback", "onRegistered() get " + deviceToken);
-				enablePushAgent();
+//				enablePushAgent();
 			}
 
 			@Override
 			public void onFailure(String s, String s1) {
-
+				logE("IUmengRegisterCallback", "onFailure() s=" + s + ", s1=" + s1);
 			}
 		});
 
@@ -111,36 +110,36 @@ public class YouMengMessageHelper {
 	/**
 	 * 注销回调：IUmengCallback；当关闭友盟推送时，可调用以下代码(请在Activity内调用)
 	 */
-	public void disablePushAgent() {
-		mPushAgent.disable(new IUmengCallback() {
-			@Override
-			public void onSuccess() {
-				logD("disablePushAgent", "onSuccess()");
-			}
-
-			@Override
-			public void onFailure(String s, String s1) {
-				logD("disablePushAgent", "onFailure() " + s + " " + s1);
-			}
-		});
-	}
+//	public void disablePushAgent() {
+//		mPushAgent.disable(new IUmengCallback() {
+//			@Override
+//			public void onSuccess() {
+//				logD("disablePushAgent", "onSuccess()");
+//			}
+//
+//			@Override
+//			public void onFailure(String s, String s1) {
+//				logD("disablePushAgent", "onFailure() " + s + " " + s1);
+//			}
+//		});
+//	}
 
     /**
      * 若调用关闭推送后，想要再次开启推送，则需要调用以下代码(请在Activity内调用)
      */
-	public void enablePushAgent() {
-		mPushAgent.enable(new IUmengCallback() {
-			@Override
-			public void onSuccess() {
-				logD("enablePushAgent", "onSuccess()");
-			}
-
-			@Override
-			public void onFailure(String s, String s1) {
-				logE("enablePushAgent", "onFailure() " + s + " " + s1);
-			}
-		});
-	}
+//	public void enablePushAgent() {
+//		mPushAgent.enable(new IUmengCallback() {
+//			@Override
+//			public void onSuccess() {
+//				logD("enablePushAgent", "onSuccess()");
+//			}
+//
+//			@Override
+//			public void onFailure(String s, String s1) {
+//				logE("enablePushAgent", "onFailure() " + s + " " + s1);
+//			}
+//		});
+//	}
 
 	/**
 	 * MobclickAgent.openActivityDurationTrack(false) 禁止默认的页面统计方式，这样将不会再自动统计Activity。
@@ -152,7 +151,7 @@ public class YouMengMessageHelper {
 	public synchronized void startMobclickAgent(boolean openActivityDurationTrack) {
 		MobclickAgent.setDebugMode(isInDebug());
 		MobclickAgent.openActivityDurationTrack(openActivityDurationTrack);
-		MobclickAgent.enableEncrypt(!BuildConfig.DEBUG);
+		MobclickAgent.enableEncrypt(!isInDebug());
 		updateOnlineConfig(mContext);
 	}
 

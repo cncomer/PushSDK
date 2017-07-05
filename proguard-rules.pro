@@ -20,9 +20,9 @@
 -dontwarn anet.channel.**
 -dontwarn anetwork.channel.**
 -dontwarn org.android.**
--dontwarn org.apache.thrift.**
 -dontwarn com.xiaomi.**
 -dontwarn com.huawei.**
+-dontwarn org.apache.thrift.**
 
 -keepattributes *Annotation*
 
@@ -33,7 +33,27 @@
 -keep class com.xiaomi.** {*;}
 -keep class com.huawei.** {*;}
 -keep class org.apache.thrift.** {*;}
+-keep class com.alibaba.sdk.android.**{*;}
+-keep class com.ut.**{*;}
+-keep class com.ta.**{*;}
 
+
+#避免log打印输出
+ -assumenosideeffects class android.util.Log {
+      public static *** v(...);
+      public static *** d(...);
+      public static *** i(...);
+      public static *** w(...);
+ }
+
+#友盟统计
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
 -keep public class **.R$*{
    public static final int *;
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
 }
