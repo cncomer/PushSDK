@@ -92,13 +92,25 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
+<<<<<<< HEAD:UMengPushSDK.iml
+    <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="utdid4all-1.1.5_proguard" level="project" />
+=======
     <orderEntry type="jdk" jdkName="Android API 25 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="utdid4all-1.1.5.3_proguard" level="project" />
     <orderEntry type="library" exported="" name="com.umeng.message_3.1.1a" level="project" />
     <orderEntry type="library" exported="" name="umeng-onlineconfig_v1.0.0" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="alicloud-android-sdk-httpdns-1.0.7" level="project" />
     <orderEntry type="library" exported="" name="analytics-6.1.1" level="project" />
+=======
+    <orderEntry type="library" exported="" name="utdid4all-1.1.5_proguard" level="project" />
+    <orderEntry type="library" exported="" name="analytics-6.0.1" level="project" />
+>>>>>>> e5e4f7e493e1f70eff8895df89798eed30bced46:PushSDK.iml
+    <orderEntry type="library" exported="" name="com.umeng.message_v3.0.0" level="project" />
+>>>>>>> cc6bcdedd26eb387d6f484f4fa3bfddcbc4485bd
     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-25" level="project" />
   </component>
 </module>

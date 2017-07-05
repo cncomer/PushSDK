@@ -34,6 +34,8 @@ dependencies {
     provided files('libs/utdid4all-1.1.5.3_proguard.jar')
     compile files('libs/com.umeng.message_3.1.1a.jar')
     compile files('libs/alicloud-android-sdk-httpdns-1.0.7.jar')
+    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
     compile files('libs/umeng-onlineconfig_v1.0.0.jar')
     compile 'com.umeng.analytics:analytics:6.1.1'
 }
