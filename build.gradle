@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.2'
 
     useLibrary 'org.apache.http.legacy'
 
@@ -31,11 +31,11 @@ android {
 }
 
 dependencies {
-    provided files('libs/utdid4all-1.1.5.3_proguard.jar')
-    compile files('libs/com.umeng.message_3.1.1a.jar')
-    compile files('libs/alicloud-android-sdk-httpdns-1.0.7.jar')
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile files('libs/umeng-onlineconfig_v1.0.0.jar')
-    compile 'com.umeng.analytics:analytics:6.1.1'
+    compileOnly files('libs/utdid4all-1.1.5.3_proguard.jar')
+    api files('libs/com.umeng.message_3.1.1a.jar')
+    api files('libs/alicloud-android-sdk-httpdns-1.0.7.jar')
+    implementation 'com.android.support:support-v4:25.1.0'
+    implementation 'com.android.support:appcompat-v7:25.1.0'
+    api files('libs/umeng-onlineconfig_v1.0.0.jar')
+    api 'com.umeng.analytics:analytics:6.1.1'
 }
